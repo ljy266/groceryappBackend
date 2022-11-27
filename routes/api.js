@@ -47,7 +47,7 @@ router.get('/item', (req, res) => {
             "description": i.description
         }))
         console.log(finalArray)
-        res.set('Access-Control-Allow-Origin','*') //added cors server side solution
+        // res.set('Access-Control-Allow-Origin','*') //added cors server side solution
         res.json(finalArray)
     })
         .catch((error) => {
@@ -266,7 +266,7 @@ router.get('/store', async (req, res) => {
                          }))
                         
                     }]
-                    res.setHeader('Access-Control-Allow-Origin','*') //added cors server side solution
+                    // res.setHeader('Access-Control-Allow-Origin','*') //added cors server side solution
                     res.json(responseData)
                 })
                 .catch((error) => {
