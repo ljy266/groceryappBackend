@@ -266,74 +266,14 @@ router.get('/store', async (req, res) => {
                          }))
                         
                     }]
+                    res.set('Access-Control-Allow-Origin','*') //added cors server side solution
                     res.json(responseData)
                 })
                 .catch((error) => {
                     console.log('Error Message:  ', error)
                 })
 
-
-
-    // for (let i = 1; i <= 8; i++) {
-    //     await GroItem.find({ $and: [{ name: newName[1] }, { type: newName[0] }, { shopId: i }] })
-    //         .then((tempData) => {
-    //             array[i - 1] = tempData[0].price
-    //             console.log("price has been saved to array, the new array now is: " + array)
-    //             console.log('this for loop ran ' + i + 'time(s)')
-    //         })
-    //         .catch((error) => {
-    //             console.log('Error Message:  ', error)
-    //         })
-    //     //$and: [{ age: { $gt: 2 } }, { age: { $lte: 4 } }]
-    // }
-    // const min = Math.min(...array)
-    // console.log(min)
-
-    // await GroItem.find({ $and: [{ price: min }, { name: newName[1] }, { type: newName[0] }] })
-    //     .then((tempData2) => {
-    //         // console.log("The lowest priced item is located in store with shopId: "
-    //         //     + tempData2[0].shopId + "  and the lowest price is: " + tempData2[0].price)
-    //         finalReturn1 = tempData2
-
-    //     })
-    //     .catch((error) => {
-    //         console.log('Error Message:  ', error)
-    //     })
-
-    // await Store.find({ shopID: finalReturn1[0].shopId })
-    //     .then((tempData3) => {
-    //         finalReturn2 = tempData3
-    //         const responseData = [{
-    //             "name": finalReturn2[0].storeName,
-    //             "picture": finalReturn2[0].image,
-    //             "description": finalReturn2[0].description,
-    //             "total": min,
-    //             "groceries": [
-    //                 {
-    //                     "name": finalReturn1[0].name,
-    //                     "image": finalReturn1[0].picUrl,
-    //                     "price": finalReturn1[0].price
-    //                 }
-    //             ]
-    //         }]
-    //         console.log(finalReturn2[0].image)
-    //         res.json(responseData)
-    //     })
-    //     .catch((error) => {
-    //         console.log('Error Message:  ', error)
-    //     })
-
-    // // console.log('outsidevalue1 =' + finalReturn1)
-    // // console.log('outsidevalue2 =' + finalReturn2)
 })
-
-
-
-
-
-
-
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
