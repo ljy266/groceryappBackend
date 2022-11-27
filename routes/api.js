@@ -11,7 +11,6 @@ router.get('/', (req, res) => {
     const data = {
         Message: 'testing succeed, end points work!'
     }
-    res.set('Access-Control-Allow-Origin','*') //added cors server side solution
     res.json(data)
 })
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -267,7 +266,7 @@ router.get('/store', async (req, res) => {
                          }))
                         
                     }]
-                    res.set('Access-Control-Allow-Origin','*') //added cors server side solution
+                    res.setHeader('Access-Control-Allow-Origin','*') //added cors server side solution
                     res.json(responseData)
                 })
                 .catch((error) => {
@@ -314,77 +313,6 @@ router.get('/store0', (req, res) => {
 })
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-
-router.get('/temporary', (req, res) => {
-    // Store.find({ })
-    //     .then((data) => {
-    //         res.json()
-    //     })
-    //     .catch((error) => {
-    //         console.log('Error Message:  ', error)
-    //     })
-})
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-
-router.get('/search', (req, res) => {
-    let searchResult = {}
-    if (req.query.name != null && req.query.name !== '') {
-        searchResult.name = new RegExp(req.query.name, 'i')
-    }
-    const result = GroItem.find(searchResult)
-    res.send(result)
-    //??how to send data back to frontend
-})
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-
-router.post('/save', (req, res) => {
-    console.log('Body:  ', req.body)
-    const dataComeIn = req.body
-
-    const newGI = new GroItem(dataComeIn)
-
-    //.save
-    newGI.save((error) => {
-        if (error) {
-            res.status(500).json({ msg: 'Sorry internal errors' })
-            return;
-        }
-        //GroItem
-        return res.json({
-            msg: 'We recceived data, and it has been saved!'
-        })
-
-    })
-})
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-// router.get('/calculation', (req, res) => {
-//     //list of items
-//     GroItem.find({$or:[{name: 'Tomato1'}, {name: 'Tomato2'}]})
-//         .then((data) => {
-//             console.log('Data:  ', data)
-//             res.json(data)
-//         })
-//         .catch((error) => {
-//             console.log('Error Message:  ', error)
-//         })
-
-// })
-
-// router.get('/calculation', (req, res) => {
-
-//     GroItem.find({name: 'Tomato1'})
-//         .then((data) => {
-//             console.log('Data:  ', data)
-//             res.json(data)
-//         })
-//         .catch((error) => {
-//             console.log('Error Message:  ', error)
-//         })
-
-// })
 
 
 module.exports = router;
