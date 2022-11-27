@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const path = require('path');
 require("dotenv").config();
-// const cors = require('cors');
+const cors = require('cors');
 
 
 const app = express()
@@ -29,7 +29,7 @@ app.use(express.urlencoded({extended: false}))
 
 //http request logger
 app.use(morgan('tiny'))
-// app.use(cors())
+app.use(cors())
 app.use('/api', routes)
 
 
