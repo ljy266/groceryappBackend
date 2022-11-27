@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
     const data = {
         Message: 'testing succeed, end points work!'
     }
+    res.set('Access-Control-Allow-Origin','*') //added cors server side solution
     res.json(data)
 })
 //////////////////////////////////////////////////////////////////////////////////////////////
