@@ -30,12 +30,12 @@ app.use(express.urlencoded({extended: false}))
 //http request logger
 app.use(morgan('tiny'))
 
-const corsOptions ={
-    origin:'http://localhost:3000', 
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200
-}
-app.use(cors(corsOptions));
+// const corsOptions ={
+//     origin:'http://localhost:3000', 
+//     credentials:true,            //access-control-allow-credentials:true
+//     optionSuccessStatus:200
+// }
+app.use(cors());
 
 app.use('/api', routes)
 

@@ -33,21 +33,26 @@ router.get('/item', (req, res) => {
     const array2 = []
 
     GroItem.find({ "name": searchResult }).then((data) => {
-        data.map ( (i) => {
+        data.map((i) => {
             const nameType = i.type + i.name
             if (!array.includes(nameType)) {
                 array.push(nameType)
                 array2.push(i)
             }
         })
-        
-        const finalArray = array2.map ( (i) => ({
+
+        const finalArray = array2.map((i) => ({
             "name": i.type + " " + i.name,
             "image": i.picUrl,
             "description": i.description
         }))
         console.log(finalArray)
         // res.set('Access-Control-Allow-Origin','*') //added cors server side solution
+        res.setHeader("Access-Control-Allow-Origin", "*")
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Max-Age", "1800");
+        res.setHeader("Access-Control-Allow-Headers", "content-type");
+        res.setHeader("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS");
         res.json(finalArray)
     })
         .catch((error) => {
@@ -230,7 +235,7 @@ router.get('/store', async (req, res) => {
     await GroItem.find({ $or: [{ $and: [{ type: "Organic" }, { name: { $in: organicListItems } }] }, { $and: [{ type: "Non-Organic" }, { name: { $in: nonOrganicListItems } }] }] })
         .then((ultimateFind) => {
             ultimateFind.map((ary) => {
-                array[ary.shopId - 1]  = array[ary.shopId - 1] + parseFloat(ary.price)
+                array[ary.shopId - 1] = array[ary.shopId - 1] + parseFloat(ary.price)
             })
             // console.log(array)
             globalUltimateFind = ultimateFind
@@ -252,26 +257,31 @@ router.get('/store', async (req, res) => {
 
     Store.find({ shopID: minIndexStoreId })
         .then((tempData3) => {
-                    const responseData = [{
-                        "name": tempData3[0].storeName,
-                        "picture": tempData3[0].image,
-                        "description": tempData3[0].description,
-                        "storeHours": tempData3[0].storeHours,
-                        "total": min,
-                        "groceries": 
-                         trueUltimateFind.map ((i) => ({
-                            "name": i.type +" " + i.name,
-                            "image": i.picUrl,
-                            "price": i.price
-                         }))
-                        
-                    }]
-                    // res.setHeader('Access-Control-Allow-Origin','*') //added cors server side solution
-                    res.json(responseData)
-                })
-                .catch((error) => {
-                    console.log('Error Message:  ', error)
-                })
+            const responseData = [{
+                "name": tempData3[0].storeName,
+                "picture": tempData3[0].image,
+                "description": tempData3[0].description,
+                "storeHours": tempData3[0].storeHours,
+                "total": min,
+                "groceries":
+                    trueUltimateFind.map((i) => ({
+                        "name": i.type + " " + i.name,
+                        "image": i.picUrl,
+                        "price": i.price
+                    }))
+
+            }]
+            // res.setHeader('Access-Control-Allow-Origin','*') //added cors server side solution
+            res.setHeader("Access-Control-Allow-Origin", "*")
+            res.setHeader("Access-Control-Allow-Credentials", "true");
+            res.setHeader("Access-Control-Max-Age", "1800");
+            res.setHeader("Access-Control-Allow-Headers", "content-type");
+            res.setHeader("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS");
+            res.json(responseData)
+        })
+        .catch((error) => {
+            console.log('Error Message:  ', error)
+        })
 
 })
 
