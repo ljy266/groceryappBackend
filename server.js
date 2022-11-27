@@ -15,7 +15,7 @@ const routes = require('./routes/api')
 
 const MONGODBURL = 'mongodb+srv://ljy:RaqoeYxEOKje4CaL@cluster0.gsbwwci.mongodb.net/?retryWrites=true&w=majority'
 
-mongoose.connect(MONGODBURL, {
+mongoose.connect(process.env.MONGODB_URL || MONGODBURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
