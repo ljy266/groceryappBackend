@@ -14,6 +14,7 @@ const PORT = process.env.PORT
 const routes = require('./routes/api')
 
 const MONGODBURL = 'mongodb+srv://ljy:RaqoeYxEOKje4CaL@cluster0.gsbwwci.mongodb.net/?retryWrites=true&w=majority'
+//do not expose this database url in a real life scenario
 
 mongoose.connect(process.env.MONGODB_URL || MONGODBURL, {
     useNewUrlParser: true,
